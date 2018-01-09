@@ -48,5 +48,24 @@ function digPow(n, p){
 }
 ```
 
+## Consecutive Strings
+https://www.codewars.com/kata/consecutive-strings/javascript
 
+You are given an array strarr of strings and an integer k. Your task is to return the first longest string consisting of k consecutive strings taken in the array.
+
+#Example: longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2) --> "abigailtheta"
+
+n being the length of the string array, if n = 0 or k > n or k <= 0 return "".
+```javascript
+
+function longestConsec(strarr, k) {
+	let word = "";
+	strarr.map((x, i) => {
+		strarr.length > k && k > 0
+			? (word = strarr.slice(i, k + i).join("").length > word.length ? strarr.slice(i, k + i).join("") : word)
+			: (word = "");
+	});
+	return word;
+}
+```
 
