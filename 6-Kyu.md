@@ -99,4 +99,23 @@ return acc
 	}, []).join(' ')
 }
 ```
+## Dubstep
+https://www.codewars.com/kata/dubstep/
 
+Input
+The input consists of a single non-empty string, consisting only of uppercase English letters, the string's length doesn't exceed 200 characters
+
+Output
+Return the words of the initial song that Polycarpus used to make a dubsteb remix. Separate the words with a space.
+
+Examples
+songDecoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB") =>  WE ARE THE CHAMPIONS MY FRIEND
+
+
+```javascript
+function songDecoder(arr){
+return arr.split('WUB').filter((x,i)=> {
+	return  x!== "WUB"
+}).filter(Boolean).join(' ')
+}
+```
