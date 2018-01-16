@@ -22,4 +22,24 @@ function wallpaper(l,w,h){
 	return !l || !w || !h ? 'zero' : numbers[Math.ceil(2*h*(l+w)/0.52/10 * 1.15)];
 }
 ```
+## Mumbling
+https://www.codewars.com/kata/mumbling/train/javascript
 
+This time no story, no theory. The examples below show you how to write function accum:
+
+Examples:
+
+accum("abcd");    // "A-Bb-Ccc-Dddd"
+accum("RqaEzty"); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+accum("cwAt");    // "C-Ww-Aaa-Tttt"
+The parameter of accum is a string which includes only letters from a..z and A..Z.
+
+```javascript
+function accum(str){
+	return str.split('').reduce((acc, val, index) => {
+		acc.push(Array.apply(null, {length: index+1 }).map((x,i) => !i ? val.toUpperCase() : val.toLowerCase()).join(''))
+		return acc
+	}, []).join('-')
+	
+}
+```
