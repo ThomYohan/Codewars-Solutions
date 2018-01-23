@@ -55,3 +55,19 @@ function mid(str){
 	: str[Math.floor(str.length/2)]
 }
 ```
+
+## Isograms
+https://www.codewars.com/kata/isograms/javascript
+
+An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.
+
+```javascript
+function isIsogram(str){
+	return str.toLowerCase().split('').reduce((acc, curr, ind, arr) => {
+		if(acc){
+			acc = arr.lastIndexOf(curr) !== ind ? false : true
+		}
+		return acc
+	}, true)
+}
+```
