@@ -170,7 +170,7 @@ function perfectSquare(str) {
 		return false;
 	}
 	str = str.replace(',', '').split('\n');
-	return str.replace(',', '').split('\n').every((curr, ind) => {
+	return str.every((curr, ind) => {
 		if(curr.length === 1 && typeof str[ind+1] === 'undefined') {
 			return true
 		}
