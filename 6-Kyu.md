@@ -150,3 +150,31 @@ function likes(names) {
 	}
 }
 ```
+
+## Perfect Square.
+https://www.codewars.com/kata/perfect-square
+
+Task
+Write function which validate string input.If string is a perfect square return true,false otherwise.
+
+What is perfect square?
+We assume that charcater "."(dot) is a perfect square 1x1.
+
+-Perfect square is only build from "." characters.It cant contain any other characters beside "." and "\n" (Line feed).
+-Square must have same width and height -> cpt.Obvious
+-Square size is random!
+
+```javascript
+function perfectSquare(str) {
+	if (!RegExp(/\n/).test(str) && str.length !== 1) {
+		return false;
+	}
+	str = str.replace(',', '').split('\n');
+	return str.replace(',', '').split('\n').every((curr, ind) => {
+		if(curr.length === 1 && typeof str[ind+1] === 'undefined') {
+			return true
+		}
+		return curr.length === str[0].length && curr.length > 1
+	});
+}
+```
