@@ -118,7 +118,7 @@ return arr.split('WUB').filter((x,i)=> {
 }
 ```
 
-### Who likes it? 
+## Who likes it? 
 https://www.codewars.com/kata/who-likes-it
 
 You probably know the "like" system from Facebook and other pages. People can "like" blog posts, pictures or other items. We want to create the text that should be displayed next to such an item.
@@ -151,7 +151,7 @@ function likes(names) {
 }
 ```
 
-## Perfect Square.
+## Perfect Square
 https://www.codewars.com/kata/perfect-square
 
 Task
@@ -176,5 +176,27 @@ function perfectSquare(str) {
 		}
 		return curr.length === str[0].length && curr.length > 1
 	});
+}
+```
+
+## Find the divisors!
+https://www.codewars.com/kata/find-the-divisors
+
+
+Create a function named divisors/Divisors that takes an integer and returns an array with all of the integer's divisors(except for 1 and the number itself). If the number is prime return the string '(integer) is prime' 
+
+```javascript
+function div(num) {
+	const arr = [...Array(num)].map((_, i) => {
+		return i + 1;
+	});
+
+	let filtered = arr.filter(curr => {
+		if (curr > 1 && curr !== num) {
+			return !(num % curr);
+		}
+	});
+
+	return filtered.length > 1 ? filtered : `${num} is prime`;
 }
 ```
