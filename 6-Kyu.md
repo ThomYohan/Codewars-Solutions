@@ -1,4 +1,4 @@
-# Total Solved: 18
+# Total Solved: 21
 
 ## Multiples of 3 or 5 
 https://www.codewars.com/kata/multiples-of-3-or-5/javascript
@@ -503,7 +503,6 @@ sum() must return the sum of all array values
 even() must return an array of all even numbers, the original array must not be changed
 odd() must return an array of all odd numbers, the original array must not be changed
 
-
 ```javascript
 Array.prototype.square = function() {
   return this.map((x)=> {
@@ -540,5 +539,72 @@ Array.prototype.odd = function () {
   return this.filter(function(x) {
     return x % 2 == 1
   })
+}
+```
+
+## Persistent Bugger
+https://www.codewars.com/kata/persistent-bugger
+
+Write a function, persistence, that takes in a positive parameter num and returns its multiplicative persistence, which is the number of times you must multiply the digits in num until you reach a single digit.
+
+```javascript
+function persistence(num) {
+   var times = 0;
+   
+   num = num.toString();
+   
+   while (num.length > 1) {
+     times++;
+     num = num.split('').map(Number).reduce((a, b) => a * b).toString();
+   }
+   
+   return times;
+}
+```
+
+## Decode the Morse code
+https://www.codewars.com/kata/decode-the-morse-code
+
+In this kata you have to write a simple Morse code decoder. While the Morse code is now mostly superceded by voice and digital data communication channels, it still has its use in some applications around the world.
+The Morse code encodes every character as a sequence of "dots" and "dashes". For example, the letter A is coded as ·−, letter Q is coded as −−·−, and digit 1 is coded as ·−−−. The Morse code is case-insensitive, traditionally capital letters are used. When the message is written in Morse code, a single space is used to separate the character codes and 3 spaces are used to separate words. For example, the message HEY JUDE in Morse code is ···· · −·−−   ·−−− ··− −·· ·.
+
+NOTE: Extra spaces before or after the code have no meaning and should be ignored.
+
+In addition to letters, digits and some punctuation, there are some special service codes, the most notorious of those is the international distress signal SOS (that was first issued by Titanic), that is coded as ···−−−···. These special codes are treated as single special characters, and usually are transmitted as separate words.
+
+Your task is to implement a function that would take the morse code as input and return a decoded human-readable string.
+
+```javascript
+decodeMorse = function(morseCode){
+  var decodeString = '';
+  var morseCodeWords = morseCode.split('   ');
+  for (var i in morseCodeWords) {
+    var morseCodeArray = morseCodeWords[i].split(' ');
+    for (var j in morseCodeArray) {
+      if (MORSE_CODE[morseCodeArray[j]] !== undefined) {
+        decodeString += MORSE_CODE[morseCodeArray[j]];
+      }
+    }
+    decodeString += ' ';
+  }
+  decodeString = decodeString.trim();  
+  return decodeString;
+}
+```
+
+## Counting Duplicates
+https://www.codewars.com/kata/counting-duplicates
+
+Write a function that will return the count of distinct case-insensitive alphabetic characters and numeric digits that occur more than once in the input string. The input string can be assumed to contain only alphabets (both uppercase and lowercase) and numeric digits.
+
+```javascript
+function duplicateCount(text){
+  var arr = [], dupArr = [];
+  for(var i=0; i<text.length; i++) {
+    var t = text[i].toLowerCase();
+    if(arr.indexOf(t)<0) arr.push(t);
+    else if(dupArr.indexOf(t)<0) dupArr.push(t);
+  }
+  return dupArr.length;
 }
 ```
