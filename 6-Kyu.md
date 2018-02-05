@@ -1,4 +1,4 @@
-# Total Solved: 10
+# Total Solved: 18
 
 ## Multiples of 3 or 5 
 https://www.codewars.com/kata/multiples-of-3-or-5/javascript
@@ -222,5 +222,323 @@ function sortArray(array) {
     const odd = array.filter((x) => x % 2).sort((a,b) => a - b);
     const even = array.filter((x) => ! (x % 2)).sort((a,b) => b - a);
     return array.map((x) => x % 2 ? odd.shift() : even.shift());
+}
+```
+
+
+## Give me a diamond
+https://www.codewars.com/kata/give-me-a-diamond/
+
+This kata is to practice simple string output. Jamie is a programmer, and James' girlfriend. She likes diamonds, and wants a diamond string from James. Since James doesn't know how to make this happen, he needs your help.
+
+###Task:
+
+You need to return a string that displays a diamond shape on the screen using asterisk ("*") characters. Please see provided test cases for exact output format.
+
+The shape that will be returned from print method resembles a diamond, where the number provided as input represents the number of *’s printed on the middle line. The line above and below will be centered and will have 2 less *’s than the middle line. This reduction by 2 *’s for each line continues until a line with a single * is printed at the top and bottom of the figure.
+
+Return null if input is even number or negative (as it is not possible to print diamond with even number or negative number).
+
+```javascript
+function diamond(n){
+  if (n <= 0 || n%2 === 0){
+    return null;
+  }else{
+    var stars = n;
+    var output = '';
+    var firstLine = true;
+    while(stars > 0){
+      var j;
+      if (!firstLine){
+        output = '\n' + output;
+        for (j = 0; j < (n-stars)/2; j++){
+          output += ' ';
+        }
+      }
+      for (var i = 0; i < stars; i++){
+        output += '*';
+        if (!firstLine){
+          output = '*' + output;
+        }
+      }
+      if (!firstLine){
+        for (j = 0; j < (n-stars)/2; j++){
+          output = ' ' + output;
+        }
+      }
+      output = output + '\n';
+      stars -= 2;
+      firstLine = false;
+    }
+    return ' ' + output.substring(1);
+  }
+}
+```
+
+## Calculating with Functions
+https://www.codewars.com/kata/give-me-a-diamond/
+
+This time we want to write calculations using functions and get the results. Let's have a look at some examples:
+
+seven(times(five())); // must return 35
+four(plus(nine())); // must return 13
+eight(minus(three())); // must return 5
+six(dividedBy(two())); // must return 3
+Requirements:
+
+There must be a function for each number from 0 ("zero") to 9 ("nine")
+There must be a function for each of the following mathematical operations: plus, minus, times, dividedBy (divided_by in Ruby)
+Each calculation consist of exactly one operation and two numbers
+The most outer function represents the left operand, the most inner function represents the right operand
+
+```javascript
+function expression(number, operation) {
+	if (!operation) return number;
+	return operation(number);
+}
+
+function zero(operation) {
+	return expression(0, operation);
+}
+function one(operation) {
+	return expression(1, operation);
+}
+function two(operation) {
+	return expression(2, operation);
+}
+function three(operation) {
+	return expression(3, operation);
+}
+function four(operation) {
+	return expression(4, operation);
+}
+function five(operation) {
+	return expression(5, operation);
+}
+function six(operation) {
+	return expression(6, operation);
+}
+function seven(operation) {
+	return expression(7, operation);
+}
+function eight(operation) {
+	return expression(8, operation);
+}
+function nine(operation) {
+	return expression(9, operation);
+}
+
+function plus(x) {
+	return function(y) {
+		return y + x;
+	};
+}
+function minus(x) {
+	return function(y) {
+		return y - x;
+	};
+}
+function times(x) {
+	return function(y) {
+		return y * x;
+	};
+}
+function dividedBy(x) {
+	return function(y) {
+		return y / x;
+	};
+}
+```
+
+## Array.diff
+https://www.codewars.com/kata/array-dot-diff/
+
+Your goal in this kata is to implement an difference function, which subtracts one list from another.
+
+It should remove all values from list a, which are present in list b.
+
+array_diff([1,2],[1]) == [2]
+If a value is present in b, all of its occurrences must be removed from the other:
+
+array_diff([1,2,2,2,3],[2]) == [1,3]
+
+```javascript
+function array_diff(a, b) {
+  return a.filter((x,i) => {
+		return b.indexOf(x) < 0
+	})
+}
+````
+
+
+## Are they the same?
+https://www.codewars.com/kata/are-they-the-same/
+
+Given two arrays a and b write a function comp(a, b) (compSame(a, b) in Clojure) that checks whether the two arrays have the "same" elements, with the same multiplicities. "Same" means, here, that the elements in b are the elements in a squared, regardless of the order.
+
+```javascript
+function comp(array1, array2){
+  if (array1 === null || array2 === null)
+    return false;
+  if (array1.length != array2.length)
+    return false;
+  array1 = array1.sort((a, b) => a-b);
+  array2 = array2.sort((a, b) => a-b);
+  for (let i = 0; i < array1.length; i++)
+  {
+    if (array2[i] != array1[i] * array1[i])
+      return false;
+  }
+  return true;
+}
+```
+
+## Vasya - Clerk
+https://www.codewars.com/kata/vasya-clerk
+
+The new "Avengers" movie has just been released! There are a lot of people at the cinema box office standing in a huge line. Each of them has a single 100, 50 or 25 dollars bill. An "Avengers" ticket costs 25 dollars.
+
+Vasya is currently working as a clerk. He wants to sell a ticket to every single person in this line.
+
+Can Vasya sell a ticket to each person and give the change if he initially has no money and sells the tickets strictly in the order people follow in the line?
+
+Return YES, if Vasya can sell a ticket to each person and give the change with the bills he has at hand at that moment. Otherwise return NO.
+```javascript
+function tickets(arr){
+var a25 = 0,a50 = 0;
+  for(var i = 0;i<arr.length;i++){
+    if(arr[i] == 25){
+      a25 += 1;
+    }
+    if(arr[i] == 50){
+      a25 -= 1; a50 += 1;
+    }
+    if(arr[i] == 100){
+      if(a50 == 0 && a25 >= 3){
+        a25 -= 3;
+      }else{
+        a25 -= 1; a50 -= 1;
+      }
+    }
+    if(a25 < 0 || a50 < 0){
+      return 'NO';
+    }
+  }
+  return 'YES';
+}
+```
+
+## Only Duplicates
+https://www.codewars.com/kata/only-duplicates
+
+Given a string, remove any characters that are unique from the string.
+
+Example:
+
+input: "abccdefee"
+
+output: "cceee"
+
+```javascript
+function onlyDuplicates(str) {
+	let split = str.split('')
+	let arr = []
+	
+	split.map((x,i) => {
+		if(split.lastIndexOf(x) !== i){
+			arr.push(x)
+		} else if (
+			arr.includes(x)
+			) { 
+			arr.push(x)
+			}
+	})
+	return arr.join('')
+}
+```
+
+## Length of the longest sequence of consecutive integers
+https://www.codewars.com/kata/length-of-the-longest-sequence-of-consecutive-integers
+
+Given an array of integers, the sequences we are looking for are formed of consecutive numbers from the array, but not with necessarily consecutive indices. The order of the indices must be ascending though.
+
+Consecutive in this context means numbers in increasing order, that differ by at most one unit (they can be equal). 1,2,3 are consecutive, but also 1,1,1,2,3 and 10,10,10
+
+Example:
+
+For this array: [1,1,2,5,3] the possible such sequences are:
+
+[1], [2], [5], [3], [1, 1], [1, 2], [2, 3], [1, 1, 2], [1, 2, 3], [1, 1, 2, 3]
+The function to be implemented must return the length of the longest such sequence, in this case 4.
+
+For this version of the problem the test cases don't include very large arrays, so naive implementations will work.
+
+```javascript
+function maxConsecutiveSequenceLength(arr) {
+  const dp = new Array(arr.length + 1).fill(0);
+
+  for (let i = 0; i < arr.length; ++i) {
+    for (let j = 0; j < i; ++j) {
+      if (arr[i] >= arr[j] && arr[i] - arr[j] <= 1) {
+        dp[i] = Math.max(dp[j], dp[i]);
+      }
+    }
+    dp[i]++;
+  }
+  return Math.max(...dp);
+}
+```
+
+## Array Helpers
+https://www.codewars.com/kata/array-helpers/
+
+This kata is designed to test your ability to extend the functionality of built-in ruby classes. In this case, we want you to extend the built-in Array class with the following methods: square(), cube(), average(), sum(), even() and odd().
+
+Explanation:
+
+square() must return a copy of the array, containing all values squared, the original array must not be changed
+cube() must return a copy of the array, containing all values cubed, the original array must not be changed
+average() must return the average of all array values, average() on an empty array must return NaN
+sum() must return the sum of all array values
+even() must return an array of all even numbers, the original array must not be changed
+odd() must return an array of all odd numbers, the original array must not be changed
+
+
+```javascript
+Array.prototype.square = function() {
+  return this.map((x)=> {
+    return Math.pow(x,2)
+  })
+}
+
+
+Array.prototype.cube = function() {
+  return this.map((x)=> {
+    return Math.pow(x,3)
+  })
+}
+
+Array.prototype.average = function (){
+  if(this.length === 0) {return NaN}
+  return this.reduce(function(p, c) {return p+c;}) / this.length
+}
+
+Array.prototype.sum = function () {
+  if(this.length === 0) {return 0}
+  return this.reduce(function(a,b) {
+    return a+b
+  })
+}
+
+Array.prototype.even = function () {
+  return this.filter(function(x) {
+    return x % 2 == 0
+  })
+}
+
+Array.prototype.odd = function () {
+  return this.filter(function(x) {
+    return x % 2 == 1
+  })
 }
 ```
