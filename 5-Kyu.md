@@ -1,3 +1,5 @@
+# Total Complete : 8
+
 
 ## Sum of Pairs
 https://www.codewars.com/kata/sum-of-pairs/
@@ -106,3 +108,156 @@ function dividedBy(x) {
 	}
 }
 ```
+
+## Where my anagrams at?
+https://www.codewars.com/kata/where-my-anagrams-at
+
+Write a function that will find all the anagrams of a word from a list. You will be given two inputs a word and an array with words. You should return an array of all the anagrams or an empty array if there are none. For example:
+
+anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']) => ['aabb', 'bbaa']
+
+anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']) => ['carer', 'racer']
+
+anagrams('laser', ['lazing', 'lazy',  'lacer']) => []
+
+```javascript
+function anagrams(word, words) {
+  return words.filter(function(item){
+    return item.split('').sort().join('') === word.split('').sort().join('');
+  });
+}
+```
+
+## Double Cola
+https://www.codewars.com/kata/double-cola
+
+Sheldon, Leonard, Penny, Rajesh and Howard are in the queue for a "Double Cola" drink vending machine; there are no other people in the queue. The first one in the queue (Sheldon) buys a can, drinks it and doubles! The resulting two Sheldons go to the end of the queue. Then the next in the queue (Leonard) buys a can, drinks it and gets to the end of the queue as two Leonards, and so on.
+
+For example, Penny drinks the third can of cola and the queue will look like this:
+
+Rajesh, Howard, Sheldon, Sheldon, Leonard, Leonard, Penny, Penny
+Write a program that will return the name of the person who will drink the n-th cola.
+
+Note that in the very beginning the queue looks like that:
+
+Sheldon, Leonard, Penny, Rajesh, Howard
+##Input
+
+The input data consist of an array which contains at least 1 name, and single integer n.
+
+(1 ≤ n ≤ 1000000000).
+##Output / Examples Return the single line — the name of the person who drinks the n-th can of cola. The cans are numbered starting from 1. Please note that you should spell the names like this: "Sheldon", "Leonard", "Penny", "Rajesh", "Howard" (without the quotes). In that order precisely the friends are in the queue initially.
+
+```javascript
+function whoIsNext(names, r) {
+	var l = names.length;
+	while (r >= l) {
+		r -= l;
+		l *= 2;
+	}
+	return names[Math.ceil(names.length * r / l) - 1];
+}
+```
+
+## Valid Parentheses 
+https://www.codewars.com/kata/valid-parentheses
+
+Write a function called that takes a string of parentheses, and determines if the order of the parentheses is valid. The function should return true if the string is valid, and false if it's invalid.
+
+Examples
+"()"              =>  true
+")(()))"          =>  false
+"("               =>  false
+"(())((()())())"  =>  true
+Constraints
+0 <= input.length <= 100
+
+You may assume that the input string will only contain opening and closing parenthesis and will not be an empty string.
+
+```javascript
+function validParentheses(str) {
+	for (var i = 0; i <= str.length / 2; ++i) {
+		str = str.replace('()', '');
+	}
+
+	return str === '';
+}
+```
+
+## Human Readable Time
+https://www.codewars.com/kata/human-readable-time/train/javascript
+
+Write a function, which takes a non-negative integer (seconds) as input and returns the time in a human-readable format (HH:MM:SS)
+
+HH = hours, padded to 2 digits, range: 00 - 99
+MM = minutes, padded to 2 digits, range: 00 - 59
+SS = seconds, padded to 2 digits, range: 00 - 59
+The maximum time never exceeds 359999 (99:59:59)
+
+You can find some examples in the test fixtures.
+
+```javascript
+function humanReadable(seconds) {
+	var fix = x => {
+		if (x < 10) {
+			return '0' + x;
+		} else {
+			return x;
+		}
+	};
+	return (
+		fix(parseInt(seconds / (60 * 60))) +
+		':' +
+		fix(parseInt(seconds / 60 % 60)) +
+		':' +
+		fix(seconds % 60)
+	);
+}
+```
+## One Line Task : Count Down 1
+https://www.codewars.com/kata/one-line-task-count-down-i/train/javascript
+
+Count down 3 times to an positive integer n, return these 3 numbers as a string, separated by exclamation mark(!).
+
+Code Limit
+Less than 30 characters.
+
+Example
+For n = 1, the output should be "3!2!1".
+
+count down from 3 to 1
+
+For n = 10, the output should be "12!11!10".
+
+count down from 12 to 10
+
+For n = 100, the output should be "102!101!100".
+
+count down from 102 to 100
+
+```javascript
+countDown=n=>n+2+`!${n+1}!`+n
+```
+
+## Simple Pig Latin
+https://www.codewars.com/kata/simple-pig-latin/train/javascript
+
+Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
+
+Examples
+pigIt('Pig latin is cool'); // igPay atinlay siay oolcay
+pigIt('Hello world !');     // elloHay orldWay !
+
+```javascript
+function pigIt(str){
+  const a = []
+  str.split(' ').map(w => {
+    const b = w.split('')
+    b.shift()
+    const s = b.join('')
+    a.push(`${s}${w[0]}ay`)
+  })
+  return a.join(' ')
+}
+```
+
