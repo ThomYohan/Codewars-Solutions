@@ -1,4 +1,4 @@
-# Total Complete : 9
+# Total Complete : 10
 
 
 ## Sum of Pairs
@@ -261,3 +261,19 @@ function pigIt(str){
 }
 ```
 
+## Moving Zeros To The End
+https://www.codewars.com/kata/moving-zeros-to-the-end/javascript
+
+Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+
+```javascript
+function moveZeros(arr) {
+	let zeros = 0;
+	return arr
+		.reduce((acc, curr) => {
+			curr === 0 ? zeros++ : acc.push(curr);
+			return acc;
+		}, [])
+		.concat(Array.apply(null, { length: zeros }).fill(0));
+}
+```
