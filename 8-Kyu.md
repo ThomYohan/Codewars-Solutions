@@ -1,4 +1,4 @@
-# Total Complete: 6
+# Total Complete: 9
 
 ## Return Negative
 https://www.codewars.com/kata/return-negative/train/javascript
@@ -120,3 +120,43 @@ function doubleChar(str) {
 }, []).join('')
 }
 ```
+
+## Beginner - Lost Without a Map
+https://www.codewars.com/kata/beginner-lost-without-a-map/train/javascript
+
+Given and array of integers (x), return the array with each value doubled.
+
+```javascript
+function maps(arr){
+  return arr.map(x => x*2)
+}
+```
+
+## Remove First and Last Character
+https://www.codewars.com/kata/remove-first-and-last-character/train/javascript
+
+It's pretty straightforward. Your goal is to create a function that removes the first and last characters of a string. You're given one parameter, the original string. You don't have to worry with strings with less than two characters.
+
+```javascript
+function removeChar(str){
+  return str.slice(1,-1)
+};
+```
+
+## The Falling Speed Of Petals
+https://www.codewars.com/kata/the-falling-speed-of-petals
+
+When it's spring Japanese cherries blossom, it's called "sakura" and it's admired a lot. The petals start to fall in late April.
+
+Suppose that the falling speed of a petal is 5 centimeters per second (5 cm/s), and it takes 80 seconds for the petal to reach the ground from a certain branch.
+
+Write a function that receives the speed (in cm/s) of a petal as input, and returns the time it takes for that petal to reach the ground from the same branch.
+
+
+```javascript
+function sakuraFall(v) {
+  return (v > 0) ? 400/v : 0
+}
+```
+
+
