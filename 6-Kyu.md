@@ -1,4 +1,4 @@
-# Total Complete: 21
+# Total Complete: 22
 
 ## Multiples of 3 or 5 
 https://www.codewars.com/kata/multiples-of-3-or-5/javascript
@@ -606,5 +606,34 @@ function duplicateCount(text){
     else if(dupArr.indexOf(t)<0) dupArr.push(t);
   }
   return dupArr.length;
+}
+```
+
+## Sort the Odd
+https://www.codewars.com/kata/sort-the-odd/
+
+You have an array of numbers.
+Your task is to sort ascending odd numbers but even numbers must be on their places.
+
+```js
+function sortArray(array) {
+  var evenObj = {}; // { '2': 2, '4': 5, '8': 3 }
+  var newArray =[];
+  
+  for (var i = 0; i < array.length; i++) {
+    if(array[i] % 2 !== 0) {
+      newArray.push(array[i])
+    
+        newArray.sort(function(a, b) {
+        return (a - b);
+        })
+        //console.log(newArray) //correct ordering
+    } else evenObj[array[i]] = i
+    console.log(evenObj);
+  }
+  for (var key in evenObj) {
+    newArray.splice(evenObj[key], 0, parseInt(key))
+}
+  return newArray
 }
 ```
